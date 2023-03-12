@@ -6,11 +6,17 @@ import org.example.controller.StudentController;
 import org.example.dto.Student;
 import org.example.enums.Role;
 import org.example.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthService {
-    StudentRepository studentRepository;
-    StudentController studentController;
-    AdminController adminController;
+    @Autowired
+    StudentController studentController = new StudentController();
+    @Autowired
+    StudentRepository studentRepository = new StudentRepository();
+    @Autowired
+    AdminController adminController = new AdminController();
 
     public void login(String phone) {
         Student student = studentRepository.getUserByPhone(phone);

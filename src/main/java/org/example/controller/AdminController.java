@@ -4,13 +4,19 @@ import org.example.service.BookCardService;
 import org.example.service.BookService;
 import org.example.service.StudentService;
 import org.example.util.ScannerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
-
+@Controller
 public class AdminController {
-    private StudentService profileService;
-    private BookService bookService;
-    private BookCardService cardService;
+    @Autowired
+    private StudentService studentService = new StudentService();
+    @Autowired
+    private BookService bookService = new BookService();
+    @Autowired
+    private BookCardService cardService = new BookCardService();
 
     public void start() {
         boolean b = true;

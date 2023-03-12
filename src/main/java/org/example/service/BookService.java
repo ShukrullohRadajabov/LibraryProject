@@ -1,14 +1,16 @@
 package org.example.service;
 
 import org.example.db.DataBase;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Component
 public class BookService {
     public void bookList() {
-
+        System.out.println("bookList");
     }
     public int adminAddBook(String title, String author, Integer publisherYear, String amount) {
             Connection connection = DataBase.getConnection();
