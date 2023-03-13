@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
     @Autowired
-    StudentController studentController = new StudentController();
+    StudentController studentController;
     @Autowired
-    StudentRepository studentRepository = new StudentRepository();
+    StudentRepository studentRepository;
     @Autowired
-    AdminController adminController = new AdminController();
+    AdminController adminController;
 
     public void login(String phone) {
         Student student = studentRepository.getUserByPhone(phone);

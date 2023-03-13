@@ -32,7 +32,7 @@ public class DataBase {
                 "             phone varchar(15),\n" +
                 "             created_date timestamp default now(),\n" +
                 "             visible boolean default true, \n" +
-                "             role varchar (10) not null \n"+ ");";
+                "             role varchar (10) default 'STUDENT' \n"+ ");";
 
 
         String book = "create table if not exists book(\n" +
@@ -41,7 +41,7 @@ public class DataBase {
                 "author varchar(50),\n" +
                 "published_year int ,\n" +
                 "amount int ,\n" +
-                "visible int\n" + ");";
+                "visible boolean\n" + ");";
 
         String studentBook = "create table if not exists student_book(" +
                 "id serial primary key, " +

@@ -11,7 +11,7 @@ public class Book {
     private Integer id;
     private String title;
     private String author;
-    private Integer publishYear;
+    private Integer publishedYear;
     private Integer amount;
     private boolean visible;
 }

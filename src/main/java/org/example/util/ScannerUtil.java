@@ -11,7 +11,7 @@ public class ScannerUtil {
                 int n = scanner.nextInt();
                 return n;
             } catch (RuntimeException e) {
-                System.out.println("Hato kirildi. Son kiriting Mazgi.");
+                System.err.println("Wrong operation. Please enter number!");
             }
         }
 

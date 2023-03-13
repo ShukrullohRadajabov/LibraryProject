@@ -1,22 +1,28 @@
 package org.example.controller;
 
+import org.example.dto.Book;
+import org.example.dto.Student;
 import org.example.service.BookCardService;
 import org.example.service.BookService;
 import org.example.service.StudentService;
 import org.example.util.ScannerUtil;
+import org.example.util.ScannerUtil2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
 import java.util.Scanner;
 @Controller
 public class AdminController {
+
+    Scanner scannerInt = ScannerUtil2.SCANNER_INT;
+    Scanner scannerStr = ScannerUtil2.SCANNER_STR;
     @Autowired
-    private StudentService studentService = new StudentService();
+    private StudentService studentService;
     @Autowired
-    private BookService bookService = new BookService();
+    private BookService bookService;
     @Autowired
-    private BookCardService cardService = new BookCardService();
+    private BookCardService cardService;
 
     public void start() {
         boolean b = true;
@@ -31,14 +37,13 @@ public class AdminController {
                 case 2 :{
                     addBook();
                     break;
-
                 }
                 case 3 :{
-                    studentList();
+                    deleteBook();
                     break;
                 }
                 case 4 :{
-                    deleteBook();
+                    studentList();
                     break;
                 }
                 case 5 :{
@@ -78,35 +83,43 @@ public class AdminController {
 
 
     private void addBook() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter book title: ");
-        String title = scanner.nextLine();
+        String title = scannerStr.nextLine();
         System.out.print("Enter book author: ");
-        String author = scanner.nextLine();
+        String author = scannerStr.nextLine();
         System.out.print("Enter published year: ");
-        Integer publishedYear = scanner.nextInt();
+        Integer publishedYear = scannerInt.nextInt();
         System.out.print("Enter book amount: ");
-        String amount = scanner.nextLine();
+        String amount = scannerStr.nextLine();
         int i = bookService.adminAddBook(title, author, publishedYear, amount);
         if(i==0){
             System.err.println("Wrong!");
         }
         else System.out.println("Add successfully");
     }
-
-    private void bookList() {
-        bookService.bookList();
+    private void bookList(){
+        List<Book> bookList = bookService.getBookList1();
+        if(bookList == null){
+            System.out.println("Book List yet empty");
+        }else{
+            bookList.forEach(System.out::println);
+        }
     }
 
     private void deleteBook() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter book id: ");
         String bookId = scanner.nextLine();
-        bookService.adminDeleteBook(bookId);
+        String result = bookService.adminDeleteBook(bookId);
+        if (result==null) {
+            System.err.println("Something is wrong!");
+        }
+        else System.out.println(result);
     }
 
     private void studentList() {
-        bookService.studentList();
+        List<Student> studentList = studentService.studentList();
+        studentList.forEach(System.out::println);
     }
 
     private void addStudent() {
@@ -120,22 +133,22 @@ public class AdminController {
         System.out.print("Enter phone: ");
         String phone = scanner.nextLine();
 
-        bookService.addStudent(name, surname, phone);
+        String result = studentService.addStudent(name, surname, phone);
+        System.out.println(result);
     }
 
     private void deleteStudent() {
         System.out.print("Enter student id: ");
-        Scanner scanner = new Scanner(System.in);
-        String studentId = scanner.nextLine();
-
-        bookService.adminDeleteStudent(studentId);
+        String studentId = scannerStr.nextLine();
+        String result = studentService.adminDeleteStudent(studentId);
+        System.out.println(result);
     }
 
     private void studentTakenBook() {
-        bookService.studentTakenBook();
+        studentService.studentTakenBook();
     }
 
     private void bookTakenHistory() {
-        bookService.studentTakenHistory();
+        studentService.studentTakenHistory();
     }
 }

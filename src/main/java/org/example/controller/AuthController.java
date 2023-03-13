@@ -5,13 +5,15 @@ import org.example.service.AuthService;
 import org.example.util.ScannerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
 
-@Component
+@Controller
 
 public class AuthController {
-    AuthService authService = new AuthService();
+    @Autowired
+    private AuthService authService;
     public void start() {
         boolean game = true;
         while (game) {

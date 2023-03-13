@@ -1,8 +1,9 @@
 package org.example.controller;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class StudentController {
 
     public void start() {
