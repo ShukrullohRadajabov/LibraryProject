@@ -19,4 +19,5 @@ public class Student {
     private LocalDateTime createdDate;
     private boolean visible;
     private Role role;
+    private int book_count = 0;
 }

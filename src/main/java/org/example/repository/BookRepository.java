@@ -13,6 +13,13 @@ public class BookRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public int addBook(String title, String author, Integer publisherYear, String amount){
+        String sql = "insert into book(title, author, publisher_year, amount) values('%s', '%s', '%s', '%s')";
+        sql = String.format(sql, title, author, publisherYear, amount);
+        int n = jdbcTemplate.update(sql);
+        return n;
+    }
+
     public List<Book> getBookList() {
         String sql = "select * from book where visible = true";
         List<Book> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
@@ -23,5 +30,10 @@ public class BookRepository {
         String sql = "update book set visible = false where id = '"+bookId+"';";
         int n = jdbcTemplate.update(sql);
         return n;
+    }
+    public Book getBookName(Integer bookId) {
+        String sql = "select * from book where id = '"+bookId+"'";
+        Book book = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class));
+        return book;
     }
 }

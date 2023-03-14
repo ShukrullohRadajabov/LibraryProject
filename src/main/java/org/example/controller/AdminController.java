@@ -2,7 +2,7 @@ package org.example.controller;
 
 import org.example.dto.Book;
 import org.example.dto.Student;
-import org.example.service.BookCardService;
+import org.example.service.BookStudentService;
 import org.example.service.BookService;
 import org.example.service.StudentService;
 import org.example.util.ScannerUtil;
@@ -22,8 +22,7 @@ public class AdminController {
     @Autowired
     private BookService bookService;
     @Autowired
-    private BookCardService cardService;
-
+    private BookStudentService bookStudentService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -91,13 +90,13 @@ public class AdminController {
         Integer publishedYear = scannerInt.nextInt();
         System.out.print("Enter book amount: ");
         String amount = scannerStr.nextLine();
-        int i = bookService.adminAddBook(title, author, publishedYear, amount);
-        if(i==0){
-            System.err.println("Wrong!");
+        String result = bookService.adminAddBook(title, author, publishedYear, amount);
+        if(result==null){
+            System.out.println("Successfully added!");
         }
-        else System.out.println("Add successfully");
+        else System.out.println(result);
     }
-    private void bookList(){
+    public void bookList(){
         List<Book> bookList = bookService.getBookList1();
         if(bookList == null){
             System.out.println("Book List yet empty");

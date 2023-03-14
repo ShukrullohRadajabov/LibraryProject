@@ -60,6 +60,7 @@ public class StudentRepository {
         return null;
     }
 
+
     public List<Student> getStudentList() {
         String sql = "select * from student where visible = true and role = 'STUDENT'";
         List<Student> studentList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
