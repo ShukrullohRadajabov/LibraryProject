@@ -5,19 +5,14 @@ import org.example.dto.Book;
 import org.example.dto.Student;
 import org.example.dto.StudentBook;
 import org.example.repository.BookRepository;
-import org.example.repository.BookStudentRepository;
 import org.example.service.BookService;
 import org.example.service.BookStudentService;
-import org.example.service.StudentService;
 import org.example.util.ScannerUtil;
 import org.example.util.ScannerUtil2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
 import java.util.List;
 import java.util.Scanner;
-
 @Controller
 public class StudentController {
     @Autowired
@@ -28,7 +23,6 @@ public class StudentController {
     Scanner scannerStr = ScannerUtil2.SCANNER_STR;
     @Autowired
     private BookService bookService;
-
     public void start() {
         boolean b = true;
         while (b) {
@@ -65,13 +59,11 @@ public class StudentController {
             }
         }
     }
-
     private void orderBook() {
         System.out.println("Enter book name: ");
         String bookName = scannerStr.nextLine();
         System.out.println("Your order has been accepted");
     }
-
     private void history() {
         int a=1;
         Student student = ComponentContainer.currentStudent;
@@ -86,7 +78,6 @@ public class StudentController {
             }
         }
     }
-
     private void returnBook() {
         Student student = ComponentContainer.currentStudent;
         takenBook();
@@ -95,7 +86,6 @@ public class StudentController {
         String returnBook = bookStudentService.returnBook(bookId, student);
         System.out.println(returnBook);
     }
-
     private void takenBook() {
        Student student = ComponentContainer.currentStudent;
        List<StudentBook> studentBookList = bookStudentService.takenBook(student.getId());
@@ -109,7 +99,6 @@ public class StudentController {
            }
        }
     }
-
     private void takeBook() {
         Student student = ComponentContainer.currentStudent;
         bookList();
@@ -120,7 +109,6 @@ public class StudentController {
         String result = bookStudentService.takeBook(bookId, student, date);
         System.out.println(result);
     }
-
     private void bookList() {
         List<Book> bookList = bookService.userBookList();
         if (bookList == null) {
@@ -132,7 +120,6 @@ public class StudentController {
             }
         }
     }
-
     public void userMenu() {
         System.out.println("1. Book List");
         System.out.println("2. Take book ");

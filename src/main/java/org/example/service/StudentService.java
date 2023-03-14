@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.Student;
+import org.example.dto.StudentBook;
+import org.example.repository.BookStudentRepository;
 import org.example.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +13,8 @@ import java.util.List;
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private BookStudentRepository bookStudentRepository;
 
     public List<Student> studentList() {
         List<Student> studentList = studentRepository.getStudentList();
@@ -37,10 +41,14 @@ public class StudentService {
         return "Student successfully deleted";
     }
 
-    public void studentTakenBook() {
-
+    public List<StudentBook> studentTakenBook(int studentId) {
+        List<StudentBook> studentBookList = bookStudentRepository.studentTakenBook(studentId);
+        return studentBookList;
     }
 
-    public void studentTakenHistory() {
+
+    public List<StudentBook> bookTakenHistory(Integer bookId) {
+        List<StudentBook> studentBookList = bookStudentRepository.bookTakenHistory(bookId);
+        return studentBookList;
     }
 }

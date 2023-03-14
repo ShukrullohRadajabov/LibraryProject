@@ -2,6 +2,9 @@ package org.example.controller;
 
 import org.example.dto.Book;
 import org.example.dto.Student;
+import org.example.dto.StudentBook;
+import org.example.repository.BookRepository;
+import org.example.repository.StudentRepository;
 import org.example.service.BookStudentService;
 import org.example.service.BookService;
 import org.example.service.StudentService;
@@ -22,7 +25,9 @@ public class AdminController {
     @Autowired
     private BookService bookService;
     @Autowired
-    private BookStudentService bookStudentService;
+    private BookRepository bookRepository;
+    @Autowired
+    private StudentRepository studentRepository;
     public void start() {
         boolean b = true;
         while (b) {
@@ -79,8 +84,6 @@ public class AdminController {
         System.out.println("8. Book Taken history");
         System.out.println("0. Back");
     }
-
-
     private void addBook() {
         System.out.print("Enter book title: ");
         String title = scannerStr.nextLine();
@@ -144,10 +147,43 @@ public class AdminController {
     }
 
     private void studentTakenBook() {
-        studentService.studentTakenBook();
+        studentList();
+        System.out.println("Enter student id: ");
+        Integer studentId = scannerInt.nextInt();
+        List<StudentBook> studentBookList = studentService.studentTakenBook(studentId);
+        if(studentId==null){
+            System.out.println("Student id is free");
+        }
+        else if (studentBookList.isEmpty()) {
+            System.out.println("Wrong student id or student list empty");
+        }
+        else {
+            studentBookList.forEach(System.out::println);
+        }
     }
 
     private void bookTakenHistory() {
-        studentService.studentTakenHistory();
+        bookList();
+        System.out.println("Enter book id: ");
+        int bookId = scannerInt.nextInt();
+        List<StudentBook> studentBookList = studentService.bookTakenHistory(bookId);
+        if (studentBookList.isEmpty()) {
+            System.out.println("This book history is empty");
+        }
+        else{
+            for (StudentBook studentBook : studentBookList) {
+                Book book = bookRepository.getBookName(studentBook.getBookId());
+                Student student = studentRepository.getStudentName(studentBook.getStudentId());
+                System.out.println("Id-> "+studentBook.getId()+
+                        "\t\tStudent name-> "+student.getName()+
+                        "\t\tStudent surname-> "+student.getSurname()+
+                        "\t\tStudent phoneNumber-> "+student.getPhone()+
+                        "\t\tBook Name-> "+book.getTitle()+
+                        "\t\tBook Author-> "+book.getAuthor()+
+                        "\t\tStatus-> "+studentBook.getStatus()+
+                        "\t\tTaken time-> "+studentBook.getCreatedDate()+
+                        "\t\tReturn time-> "+studentBook.getReturnedDate());
+            }
+        }
     }
 }

@@ -51,4 +51,16 @@ public class BookStudentRepository {
         List<StudentBook> studentBookList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentBook.class));
         return studentBookList;
     }
+
+    public List<StudentBook> studentTakenBook(Integer id){
+        String sql = "select * from student_book where student_id = '"+id+"'";
+        List<StudentBook> studentBookList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentBook.class));
+        return studentBookList;
+    }
+
+    public List<StudentBook> bookTakenHistory(Integer bookId) {
+        String sql = "select * from student_book where book_id = '"+bookId+"'";
+        List<StudentBook> studentBookList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentBook.class));
+        return studentBookList;
+    }
 }

@@ -79,4 +79,11 @@ public class StudentRepository {
         int n = jdbcTemplate.update(sql);
         return n;
     }
+
+    public Student getStudentName(Integer studentId) {
+        String sql = "select * from student where id = '"+studentId+"'";
+        Student student = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Student.class));
+        return student;
+
+    }
 }
