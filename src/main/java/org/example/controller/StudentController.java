@@ -67,16 +67,37 @@ public class StudentController {
     }
 
     private void orderBook() {
+        System.out.println("Enter book name: ");
+        String bookName = scannerStr.nextLine();
+        System.out.println("Your order has been accepted");
     }
 
     private void history() {
+        int a=1;
+        Student student = ComponentContainer.currentStudent;
+        List<StudentBook> studentBookList = bookStudentService.history(student.getId());
+        if(studentBookList==null){
+            System.out.println("You haven't taken books yet");
+        }
+        else {
+            for (StudentBook studentBook : studentBookList) {
+                Book book = bookRepository.getBookName(studentBook.getBookId());
+                System.out.println("Id-> "+ a++ +"\t\tBook Name-> "+book.getTitle()+"\t\tAuthor Name-> "+book.getAuthor()+"\t\tStatus-> "+studentBook.getStatus()+"\t\tTaken time-> "+studentBook.getCreatedDate()+"\t\tReturn time-> "+studentBook.getReturnedDate());
+            }
+        }
     }
 
     private void returnBook() {
+        Student student = ComponentContainer.currentStudent;
+        takenBook();
+        System.out.println("Enter id: ");
+        int bookId = scannerInt.nextInt();
+        String returnBook = bookStudentService.returnBook(bookId, student);
+        System.out.println(returnBook);
     }
 
     private void takenBook() {
-        Student student = ComponentContainer.currentStudent;
+       Student student = ComponentContainer.currentStudent;
        List<StudentBook> studentBookList = bookStudentService.takenBook(student.getId());
        if(studentBookList==null){
            System.out.println("You haven't taken books yet");

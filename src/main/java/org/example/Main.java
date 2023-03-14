@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Main {
     public static void main(String[] args) {
-        DataBase.initTable();
+//        DataBase.initTable();
         ApplicationContext applicationContext =new AnnotationConfigApplicationContext(Config.class);
         AuthController authController = (AuthController) applicationContext.getBean("authController");
         authController.start();

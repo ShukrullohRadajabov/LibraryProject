@@ -14,7 +14,7 @@ public class BookStudentService {
     private BookStudentRepository bookStudentRepository;
 
     public String takeBook(Integer bookId, Student student, int date) {
-        if (student.getBook_count() < 5) {
+        if (student.getBook_count() < 4) {
             if (bookId == null) {
                 return "Book id empty";
             }
@@ -33,6 +33,19 @@ public class BookStudentService {
 
     public List<StudentBook> takenBook(Integer id) {
         List<StudentBook> studentBookList = bookStudentRepository.takenBook(id);
+        return studentBookList;
+    }
+
+    public String returnBook(int bookId, Student student) {
+        int n = bookStudentRepository.returnBook(bookId, student);
+        if(n==0){
+            return "ERROR 500";
+        }
+        return "Successfully returned";
+    }
+
+    public List<StudentBook> history(Integer id) {
+        List<StudentBook> studentBookList = bookStudentRepository.history(id);
         return studentBookList;
     }
 }

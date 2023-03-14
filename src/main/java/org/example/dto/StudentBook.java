@@ -17,5 +17,6 @@ public class StudentBook {
     private BookStatus status;
     private LocalDateTime returnedDate;
     private Integer duration;
+    private boolean visible;
 
 }
