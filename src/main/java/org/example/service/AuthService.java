@@ -3,7 +3,7 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.controller.AdminController;
 import org.example.controller.StudentController;
-import org.example.dto.Student;
+import org.example.entity.Student;
 import org.example.enums.Role;
 import org.example.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +32,9 @@ public class AuthService {
         }
 
         ComponentContainer.currentStudent = student;
-        if (student.getRole().equals(Role.ADMIN)) {
+        if (student.getRole().equals("ADMIN")) {
             adminController.start();
-        } else if (student.getRole().equals(Role.STUDENT)) {
+        } else if (student.getRole().equals("STUDENT")) {
             studentController.start();
         } else {
             System.out.println("You don't have any role.");

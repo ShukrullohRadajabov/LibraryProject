@@ -1,7 +1,7 @@
 package org.example.repository;
 
-import org.example.dto.Student;
-import org.example.dto.StudentBook;
+import org.example.entity.Student;
+import org.example.entity.StudentBook;
 import org.example.enums.BookStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

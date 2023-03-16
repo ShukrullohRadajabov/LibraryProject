@@ -2,6 +2,7 @@ package org.example.db;
 
 
 
+import org.example.enums.Role;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -54,6 +55,10 @@ public class DataBase {
         execute(student);
         execute(book);
         execute(studentBook);
+    }
+
+    public static void addAdmin(){
+//        String addAdmin = "insert into student (name, surname, phone, created_date, visible, role) values ('admin','adminov','123', now(), true, '"+ Role.ADMIN+ "');
     }
 
     private static void execute(String sql) {

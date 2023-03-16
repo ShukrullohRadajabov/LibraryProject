@@ -1,10 +1,8 @@
 package org.example.controller;
 
-import org.example.dto.Student;
 import org.example.service.AuthService;
 import org.example.util.ScannerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;

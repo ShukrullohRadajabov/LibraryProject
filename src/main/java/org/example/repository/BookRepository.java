@@ -1,6 +1,6 @@
 package org.example.repository;
 
-import org.example.dto.Book;
+import org.example.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

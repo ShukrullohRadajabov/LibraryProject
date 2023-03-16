@@ -1,11 +1,10 @@
 package org.example.controller;
 
-import org.example.dto.Book;
-import org.example.dto.Student;
-import org.example.dto.StudentBook;
+import org.example.entity.Book;
+import org.example.entity.Student;
+import org.example.entity.StudentBook;
 import org.example.repository.BookRepository;
 import org.example.repository.StudentRepository;
-import org.example.service.BookStudentService;
 import org.example.service.BookService;
 import org.example.service.StudentService;
 import org.example.util.ScannerUtil;

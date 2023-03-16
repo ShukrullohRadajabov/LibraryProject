@@ -1,6 +1,6 @@
 package org.example.container;
 
-import org.example.dto.Student;
+import org.example.entity.Student;
 
 public class ComponentContainer {
     public static Student currentStudent = null;

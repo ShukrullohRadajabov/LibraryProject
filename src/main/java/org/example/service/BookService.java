@@ -1,5 +1,5 @@
 package org.example.service;
-import org.example.dto.Book;
+import org.example.entity.Book;
 import org.example.repository.BookRepository;
 import org.example.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
