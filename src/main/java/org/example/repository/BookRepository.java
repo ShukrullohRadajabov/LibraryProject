@@ -14,7 +14,7 @@ public class BookRepository {
     private JdbcTemplate jdbcTemplate;
 
     public int addBook(String title, String author, Integer publisherYear, String amount){
-        String sql = "insert into book(title, author, publisher_year, amount) values('%s', '%s', '%s', '%s')";
+        String sql = "insert into book(title, author, published_year, amount) values('%s', '%s', '%s', '%s')";
         sql = String.format(sql, title, author, publisherYear, amount);
         int n = jdbcTemplate.update(sql);
         return n;
